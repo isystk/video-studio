@@ -1,0 +1,43 @@
+networks:
+  default:
+    external: true
+    name: docker_default
+
+volumes:
+  remotion_nm:
+
+services:
+  voicevox:
+    image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+    ports:
+      - "50021:50021"
+    restart: unless-stopped
+
+  remotion:
+    build:
+      context: .
+      dockerfile: remotion/Dockerfile
+    volumes:
+      - ..:/workspace
+      - remotion_nm:/workspace/remotion/node_modules
+      - type: bind
+        source: "${WORKS_REAL_PATH:-../works}"
+        target: /workspace/works
+      - type: bind
+        source: "${OUTPUT_REAL_PATH:-../output}"
+        target: /workspace/output
+    ports:
+      - "3000:3000"
+    working_dir: /workspace
+    command: >
+      bash -c "cd /workspace/remotion && npm install && touch /tmp/.ready && sleep infinity"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - voicevox
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/.ready"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 10s

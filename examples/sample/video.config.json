@@ -1,0 +1,20 @@
+{
+  "id": "Sample",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationSec": 8,
+  "persistentDisclaimer": "※ これはサンプル動画です",
+  "layers": [],
+  "audioTracks": [],
+  "subtitles": [
+    { "startSec": 0, "endSec": 3, "text": "video-studio へようこそ" },
+    { "startSec": 3, "endSec": 6, "text": "JSON を書くだけで\nショート動画が作れます" }
+  ],
+  "endcard": {
+    "startSec": 6,
+    "mainText": "サンプル動画",
+    "ctaText": "↓ 詳細は概要欄へ",
+    "disclaimerText": "これはサンプルです"
+  }
+}

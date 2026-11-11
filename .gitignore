@@ -1,0 +1,22 @@
+# 実行時データ（ローカル専用。シンボリックリンクにも効くよう末尾スラッシュなし）
+/works
+/output
+docker/.env
+
+# 共有素材（各自で用意する。.gitkeep のみ追跡）
+assets/bgm/*
+assets/clips/*
+assets/images/*
+!assets/*/.gitkeep
+
+# Remotion
+remotion/node_modules/
+remotion/dist/
+remotion/src/registry.json
+node_modules/
+
+# ローカル設定・エディタ
+.claude/settings.local.json
+.serena/
+.history/
+.DS_Store
